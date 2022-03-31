@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Groupe Tracker</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link rel="shortcut icon" href="static/images/groupies.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap -->
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/font-awesome&logo.css" rel="stylesheet">
+  <link href="static/css/style.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,600" rel="stylesheet" type="text/css">
+  <link href="static/css/search.css" rel="stylesheet">
+
+
+  <script src="static/js/jquery-1.10.2.min.js"></script>
+  <script src="static/js/script.js"></script>
+  <script>
+    $(function () {
+      $("#loading-image").load("static/loading.html");
+    });
+  </script>
+  <script>
+    function showhide() {
+      var div = document.getElementById("newpost");
+      if (div.style.display !== "none") {
+        div.style.display = "none";
+      }
+      else {
+        div.style.display = "block";
+      }
+      var div = document.getElementById("newpost2");
+      if (div.style.display !== "none") {
+        div.style.display = "none";
+      }
+      else {
+        div.style.display = "block";
+      }
+    }
+
+  </script>
+  <script>
+    function NextPage() {
+      {{.NextButtonJS }}
+      var A26 = [document.getElementById("I26"), document.getElementById("A26")];
+      var A27 = [document.getElementById("I27"), document.getElementById("A27")];
+      A26[0].style.display = "none";
+      A27[0].style.display = "none";
+      document.getElementById("buttonNext").style.display = "none"
+      document.getElementById("buttonBack").style.display = "block"
+    }
+  </script>
+  <script>
+    function BackPage() {
+      {{.BackButtonJS }}
+      A26[0].style.display = "block";
+      A27[0].style.display = "block";
+      document.getElementById("buttonNext").style.display = "block"
+      document.getElementById("buttonBack").style.display = "none"
+    }
+  </script>
+</head>
+
+<body>
+
+
+  <div class="site-header">
+    <div class="main-navigation">
+      <div class="responsive_menu">
+        <ul>
+          <li><a class="show-1 HomePage" href="#">All artists</a></li>
+          <li><a class="Search" href="#">Search</a></li>
+          <li><a class="show-5 RandomPage" href="#">Random artist</a></li>
+        </ul>
+      </div>
+      <div class="container">
+        <div class="row templatemo_gallerygap">
+          <div class="col-md-12 responsive-menu">
+            <a href="#" class="menu-toggle-btn">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div> <!-- /.col-md-12 -->
+          <div class="col-md-3 col-sm-12">
+            <a href="/"><img src="static/images/ynov_white.png"></a>
+          </div>
+          <div class="col-md-9 main_menu">
+            <ul>
+              <li><a class="show-1 HomePage" href="#">
+                  <span class="fa fa-camera"></span>
+                  All artists</a></li>
+              <li><a class="Search" href="#">
+                  <span class="fa fa-cogs"></span>
+                  Search</a></li>
+              <li><a class="show-3 RandomPage" href="#" onclick="location.href = `/artist/` + randomArtist()">
+                  <span class="fa fa-envelope"></span>
+                  Random artist</a></li>
+            </ul>
+          </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+    </div> <!-- /.main-navigation -->
+  </div> <!-- /.site-header -->
+  <div id="menu-container">
+
+    <!-- gallery start -->
+    <div class="content homepage" id="menu-1" style="display: block;">
+      <div class="container">
+        <div class="row templatemorow">
+
+          {{range .FirstLineArtist}}
+          <div class="hex col-sm-6">
+            <div>
+              <div class="hexagon hexagon2 gallery-item">
+                <div class="hexagon-in1">
+                  <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                    <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                      <div class="overlay">
+                        <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{end}}
+
+          <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top3" style="margin-left: -10%;">
+          </div>
+
+          {{range .SecondLineArtist}}
+          <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top2">
+            <div>
+              <div class="hexagon hexagon2 gallery-item">
+                <div class="hexagon-in1">
+                  <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                    <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                      <div class="overlay">
+                        <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{end}}
+
+        </div>
+      </div>
+      <div id="newpost" style="display:none;" class="container answer_list templatemo_gallerytop">
+        <div class="row templatemorow">
+
+          {{range .ThirdLineArtist}}
+          <div class="hex col-sm-6">
+            <div>
+              <div class="hexagon hexagon2 gallery-item">
+                <div class="hexagon-in1">
+                  <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                    <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                      <div class="overlay">
+                        <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{end}}
+
+          <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top3" style="margin-left: -10%;">
+          </div>
+
+          {{range .FourthLineArtist}}
+          <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top2">
+            <div>
+              <div class="hexagon hexagon2 gallery-item">
+                <div class="hexagon-in1">
+                  <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                    <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                      <div class="overlay">
+                        <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{end}}
+
+          <div id="newpost2" style="display:none;" class="container answer_list templatemo_gallerytop2">
+            <div class="row templatemorow">
+
+              {{range .FifthLineArtist}}
+              <div class="hex col-sm-6">
+                <div>
+                  <div class="hexagon hexagon2 gallery-item">
+                    <div class="hexagon-in1">
+                      <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                        <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                          <div class="overlay">
+                            <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{end}}
+
+              <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top3" style="margin-left: -10%;">
+              </div>
+
+              {{range .SixthLineArtist}}
+              <div class="hex col-sm-6 templatemo-hex-top1 templatemo-hex-top2">
+                <div>
+                  <div class="hexagon hexagon2 gallery-item">
+                    <div class="hexagon-in1">
+                      <a id="A{{.ID}}" href="/artist/{{.ID}}">
+                        <div id="I{{.ID}}" class="hexagon-in2" style="background-image: url({{.Image}});">
+                          <div class="overlay">
+                            <label class="AName" id="AName{{.ID}}">{{.Name}}</label>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{end}}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class>
+
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <button class="BackP" id="buttonBack" onClick="BackPage()" style="display: none;">&#10096;</button>
+          <button class="NextP" id="buttonNext" onClick="NextPage()">&#10097;</button>
+          <div class="templatemo_loadmore">
+            <button class="gallery_more" id="button" onClick="showhide()">&#9660;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- gallery end -->
+    <div class="content search" id="menu-2" style="display: none;">
+      <div class="container search" id="menu-3" style="display: none;">
+        <div id="search">
+          <table style="margin: auto;">
+            <tbody>
+              <td>
+                <input type="text" id="searchbar" onkeyup="searchlist()" placeholder="Search your artist" title="Type in a name"
+                  style="background-image: url('/static/images/searchbaricon.png');">
+                <ul id="searchlist" style="display: none; position: fixed; z-index: 9999;" >
+                  {{range .SearchArtist}}
+                  <li><a href="#" onclick="location.href = `/artist/` + {{.ID}}">{{.Name}}</a></li>
+                  {{end}}
+                </ul>
+              </td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Random page loading -->
+    <div class="container randompage" id="menu-4" style="display: none;">
+      <div class="row templatemorow">
+        <div id="loading-image" style="background: none;"></div>
+        <label style="font-size: large; margin-left: 44.5%;">ONE SECOND...</label>
+      </div>
+    </div>
+    <!-- footer start -->
+    <div class="templatemo_footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 col-sm-12">
+            <span>Code Killer 2021 | We Make With Love &#x2764;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer end -->
+    <script>
+      $('.gallery_more').click(function () {
+        var $this = $(this);
+        $this.toggleClass('gallery_more');
+        if ($this.hasClass('gallery_more')) {
+          $this.text('\u25BC');
+        } else {
+          $this.text('\u25B2');
+        }
+      });
+    </script>
+  </div>
+</body>
+
+</html>
